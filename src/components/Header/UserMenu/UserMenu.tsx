@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const UserMenu = () => {
   // Temp
-  const [user] = useState(true)
+  const [user] = useState(false)
 
   return (
     <Box
@@ -48,10 +48,10 @@ const UserMenu = () => {
       ) : (
         <>
           <Button variant='contained' color='primary'>
-            Login
+            <Link to='/login'>Login</Link>
           </Button>
           <Button variant='contained' color='secondary'>
-            Register
+            <Link to='/register'>Register</Link>
           </Button>
         </>
       )}

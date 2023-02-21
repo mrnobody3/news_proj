@@ -11,7 +11,11 @@ const ProfilePage = () => {
     <Section>
       <Grid
         component='div'
-        sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
       >
         <Grid item xs={12} sm={4}>
           <Avatar
