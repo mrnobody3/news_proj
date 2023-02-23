@@ -1,7 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { TextField, Button } from '@mui/material'
 import { useFormik } from 'formik'
+import { useSelector } from 'react-redux'
 import * as yup from 'yup'
+import { useAppDispatch } from '../../../hooks/useReduxWithType'
+import { register } from '../../../redux/auth/authOperations'
+import { selectLoading } from '../../../redux/auth/authSelectors'
 import { StyledForm } from './RegisterForm.styled'
 
 const validationSchema = yup.object({
@@ -11,36 +15,35 @@ const validationSchema = yup.object({
     .string()
     .required('Password is required')
     .min(8, 'Password must be at least 8 characters'),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref('password')], 'Passwords must match')
-    .required('Confirm Password is required'),
+  // confirmPassword: yup
+  //   .string()
+  //   .oneOf([yup.ref('password')], 'Passwords must match')
+  //   .required('Confirm Password is required'),
 })
 
 interface FormValues {
   name: string
   email: string
   password: string
-  confirmPassword: string
+  // confirmPassword: string
 }
 
 const initialValues: FormValues = {
   name: '',
   email: '',
   password: '',
-  confirmPassword: '',
+  // confirmPassword: '',
 }
 
 const RegisterForm: React.FC = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const dispatch = useAppDispatch()
+  const isLoading = useSelector(selectLoading)
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit: async (values) => {
-      setIsSubmitting(true)
-      // Submit the form data to the server here
-      console.log('Form values:', values)
-      setIsSubmitting(false)
+      dispatch(register(values))
+      formik.resetForm()
     },
   })
 
@@ -77,23 +80,23 @@ const RegisterForm: React.FC = () => {
         error={formik.touched.password && Boolean(formik.errors.password)}
         helperText={formik.touched.password && formik.errors.password}
       />
-      <TextField
-        id='confirmPassword'
-        label='Confirm Password'
-        type='password'
-        variant='outlined'
-        value={formik.values.confirmPassword}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        error={
-          formik.touched.confirmPassword &&
-          Boolean(formik.errors.confirmPassword)
-        }
-        helperText={
-          formik.touched.confirmPassword && formik.errors.confirmPassword
-        }
-      />
-      <Button type='submit' variant='contained' disabled={isSubmitting}>
+      {/* <TextField */}
+      {/*  id='confirmPassword' */}
+      {/*  label='Confirm Password' */}
+      {/*  type='password' */}
+      {/*  variant='outlined' */}
+      {/*  value={formik.values.confirmPassword} */}
+      {/*  onChange={formik.handleChange} */}
+      {/*  onBlur={formik.handleBlur} */}
+      {/*  error={ */}
+      {/*    formik.touched.confirmPassword && */}
+      {/*    Boolean(formik.errors.confirmPassword) */}
+      {/*  } */}
+      {/*  helperText={ */}
+      {/*    formik.touched.confirmPassword && formik.errors.confirmPassword */}
+      {/*  } */}
+      {/* /> */}
+      <Button type='submit' variant='contained' disabled={isLoading}>
         Register
       </Button>
     </StyledForm>

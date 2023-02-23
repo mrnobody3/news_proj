@@ -1,7 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { TextField, Button, Box } from '@mui/material'
 import { useFormik } from 'formik'
+import { useSelector } from 'react-redux'
 import * as yup from 'yup'
+import { useAppDispatch } from '../../../hooks/useReduxWithType'
+import { login } from '../../../redux/auth/authOperations'
+import { selectLoading } from '../../../redux/auth/authSelectors'
 
 const validationSchema = yup.object({
   email: yup.string().email('Invalid email').required('Email is required'),
@@ -19,15 +23,13 @@ const initialValues: FormValues = {
 }
 
 const LoginForm: React.FC = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const dispatch = useAppDispatch()
+  const isLoading = useSelector(selectLoading)
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit: async (values) => {
-      setIsSubmitting(true)
-      // Submit the form data to the server here
-      console.log('Form values:', values)
-      setIsSubmitting(false)
+      dispatch(login(values))
     },
   })
 
@@ -65,7 +67,7 @@ const LoginForm: React.FC = () => {
         error={formik.touched.password && Boolean(formik.errors.password)}
         helperText={formik.touched.password && formik.errors.password}
       />
-      <Button type='submit' variant='contained' disabled={isSubmitting}>
+      <Button type='submit' variant='contained' disabled={isLoading}>
         Login
       </Button>
     </Box>
