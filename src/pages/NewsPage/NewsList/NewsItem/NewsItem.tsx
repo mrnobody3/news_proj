@@ -1,6 +1,6 @@
-import { Card, CardContent, IconButton, Typography } from '@mui/material'
-import ClearIcon from '@mui/icons-material/Clear'
-import React from 'react'
+import { Card, CardContent, IconButton, Typography } from "@mui/material"
+import ClearIcon from "@mui/icons-material/Clear"
+import React from "react"
 
 interface INewsItem {
   title: string
@@ -18,11 +18,11 @@ const NewsItem: React.FC<INewsItem> = ({
   return (
     <Card
       sx={{
-        bgcolor: '#e3f6f5',
+        bgcolor: "#e3f6f5",
         maxWidth: 600,
-        minHeight: '340px',
-        position: 'relative',
-        padding: '10px',
+        minHeight: "340px",
+        position: "relative",
+        padding: "10px",
       }}
     >
       <CardContent>
@@ -30,9 +30,9 @@ const NewsItem: React.FC<INewsItem> = ({
           variant='h2'
           sx={{
             fontSize: 24,
-            fontWeight: 'bold',
+            fontWeight: "bold",
             marginBottom: (theme) => theme.spacing(2),
-            textTransform: 'uppercase',
+            textTransform: "uppercase",
           }}
         >
           {title}
@@ -45,9 +45,9 @@ const NewsItem: React.FC<INewsItem> = ({
         onClick={() => onRemove(id)}
         aria-label='delete'
         sx={{
-          position: 'absolute',
-          top: '2px',
-          right: '2px',
+          position: "absolute",
+          top: "2px",
+          right: "2px",
         }}
       >
         <ClearIcon />

@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import heroBg from '../../assets/images/homePage/hero_bg.jpeg'
+import styled from "styled-components"
+import heroBg from "../../assets/images/homePage/hero_bg.jpeg"
 export const SectionStyled = styled.section`
   height: 100vh;
   background-size: cover;

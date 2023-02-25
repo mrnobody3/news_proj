@@ -1,9 +1,9 @@
-import { Button } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-import NewsList from './NewsList'
-import Section from '../../components/Section'
-import { getPosts } from '../../services/api/getPosts'
-import { IPost } from '../../types/post'
+import { Button } from "@mui/material"
+import React, { useEffect, useState } from "react"
+import NewsList from "./NewsList"
+import Section from "../../components/Section"
+import { getPosts } from "../../services/api/getPosts"
+import { IPost } from "../../types/post"
 
 const NewsPage = () => {
   const [newsPosts, setNewsPosts] = useState<IPost[]>([])
@@ -48,12 +48,12 @@ const NewsPage = () => {
           disabled={isLoading}
           onClick={handleLoadMoreClick}
           sx={{
-            display: 'block',
-            marginLeft: 'auto',
-            marginTop: '20px',
+            display: "block",
+            marginLeft: "auto",
+            marginTop: "20px",
           }}
         >
-          {isLoading ? 'Loading...' : 'Load More'}
+          {isLoading ? "Loading..." : "Load More"}
         </Button>
       )}
     </Section>

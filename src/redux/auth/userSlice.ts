@@ -1,7 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { isError } from '../../helpers/getError'
-import { IUser } from '../../types/user'
-import { current, login, logout, register } from './authOperations'
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { isError } from "../../helpers/getError"
+import { IUser } from "../../types/user"
+import { current, login, logout, register } from "./authOperations"
 interface UsersState {
   user: IUser
   accessToken?: string | null
@@ -12,10 +12,10 @@ interface UsersState {
 
 const initialState = {
   user: {
-    email: '',
-    name: '',
-    _id: '',
-    avatarUrl: '',
+    email: "",
+    name: "",
+    _id: "",
+    avatarUrl: "",
   },
   accessToken: null,
   isLoggedIn: false,
@@ -24,7 +24,7 @@ const initialState = {
 } as UsersState
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -61,11 +61,11 @@ const authSlice = createSlice({
     })
     builder.addCase(logout.fulfilled, (state) => {
       state.loading = false
-      state.accessToken = ''
-      state.user._id = ''
-      state.user.email = ''
-      state.user.name = ''
-      state.user.avatarUrl = ''
+      state.accessToken = ""
+      state.user._id = ""
+      state.user.email = ""
+      state.user.name = ""
+      state.user.avatarUrl = ""
       state.isLoggedIn = false
     })
 

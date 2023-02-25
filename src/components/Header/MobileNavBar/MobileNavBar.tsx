@@ -1,12 +1,12 @@
-import Box from '@mui/material/Box'
-import Divider from '@mui/material/Divider'
-import Drawer from '@mui/material/Drawer'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import LanguageSelector from '../../LanguageSelector/'
-import Logo from '../../Logo'
+import Box from "@mui/material/Box"
+import Divider from "@mui/material/Divider"
+import Drawer from "@mui/material/Drawer"
+import List from "@mui/material/List"
+import ListItem from "@mui/material/ListItem"
+import React from "react"
+import { NavLink } from "react-router-dom"
+import LanguageSelector from "../../LanguageSelector/"
+import Logo from "../../Logo"
 
 interface Item {
   id: number
@@ -27,22 +27,22 @@ const MobileNavBar: React.FC<IMobileNavBar> = ({
   const drawer = (
     <Box
       onClick={handleDrawerToggle}
-      sx={{ textAlign: 'center', bgcolor: 'gray' }}
+      sx={{ textAlign: "center", bgcolor: "gray" }}
     >
       <Logo />
       <LanguageSelector />
       <Divider />
       <List
         sx={{
-          padding: '35px',
-          display: 'flex',
-          gap: '30px',
-          flexDirection: 'column',
+          padding: "35px",
+          display: "flex",
+          gap: "30px",
+          flexDirection: "column",
         }}
       >
         {navItems.map((item) => (
           <ListItem key={item.id} disablePadding>
-            <NavLink style={{ fontWeight: '500' }} to={item.path}>
+            <NavLink style={{ fontWeight: "500" }} to={item.path}>
               {item.name}
             </NavLink>
           </ListItem>
@@ -61,8 +61,8 @@ const MobileNavBar: React.FC<IMobileNavBar> = ({
           keepMounted: true, // Better open performance on mobile.
         }}
         sx={{
-          display: { xs: 'block', sm: 'none' },
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 },
+          display: { xs: "block", sm: "none" },
+          "& .MuiDrawer-paper": { boxSizing: "border-box", width: 240 },
         }}
       >
         {drawer}

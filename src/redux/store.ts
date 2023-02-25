@@ -1,4 +1,4 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit'
+import { configureStore, combineReducers } from "@reduxjs/toolkit"
 import {
   persistStore,
   persistReducer,
@@ -8,14 +8,14 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
-import { authReducer } from './auth/userSlice'
+} from "redux-persist"
+import storage from "redux-persist/lib/storage"
+import { authReducer } from "./auth/userSlice"
 
 const authPersistConfig = {
-  key: 'auth',
+  key: "auth",
   storage,
-  whitelist: ['accessToken'],
+  whitelist: ["accessToken"],
 }
 
 const persistedReducer = persistReducer(authPersistConfig, authReducer)

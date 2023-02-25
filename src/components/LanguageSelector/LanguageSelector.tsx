@@ -1,6 +1,6 @@
-import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { FormControl, Select, MenuItem, SelectChangeEvent } from '@mui/material'
+import React from "react"
+import { useTranslation } from "react-i18next"
+import { FormControl, Select, MenuItem, SelectChangeEvent } from "@mui/material"
 
 const LanguageSelector: React.FC = () => {
   const { i18n } = useTranslation()
@@ -12,16 +12,16 @@ const LanguageSelector: React.FC = () => {
   return (
     <FormControl
       sx={{
-        marginLeft: 'auto',
-        marginRight: '10px',
+        marginLeft: "auto",
+        marginRight: "10px",
       }}
     >
       <Select
         variant='standard'
         sx={{
-          color: 'white',
-          '.MuiSvgIcon-root ': {
-            fill: 'white',
+          color: "white",
+          ".MuiSvgIcon-root ": {
+            fill: "white",
           },
         }}
         value={i18n.language}
