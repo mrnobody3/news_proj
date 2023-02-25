@@ -1,5 +1,9 @@
 import { Button } from "@mui/material"
 import React, { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
+import { useAppDispatch } from "../../hooks/useReduxWithType"
+import { selectLoading } from "../../redux/auth/authSelectors"
+import { setLoader } from "../../redux/auth/userSlice"
 import NewsList from "./NewsList"
 import Section from "../../components/Section"
 import { getPosts } from "../../services/api/getPosts"
@@ -7,9 +11,10 @@ import { IPost } from "../../types/post"
 
 const NewsPage = () => {
   const [newsPosts, setNewsPosts] = useState<IPost[]>([])
-  const [isLoading, setIsLoading] = useState(false)
   const [hasMore, setHasMore] = useState(true)
   const [page, setPage] = useState(1)
+  const dispatch = useAppDispatch()
+  const isLoading = useSelector(selectLoading)
 
   useEffect(() => {
     fetchNewsPosts()
@@ -17,16 +22,16 @@ const NewsPage = () => {
 
   const fetchNewsPosts = async () => {
     try {
-      setIsLoading(true)
+      dispatch(setLoader(true))
       const response = await getPosts(page)
       setNewsPosts([...newsPosts, ...response.data])
-      setIsLoading(false)
+      dispatch(setLoader(false))
       if (response.data.length === 0) {
         setHasMore(false)
       }
     } catch (error) {
       console.error(error)
-      setIsLoading(false)
+      dispatch(setLoader(false))
     }
   }
 

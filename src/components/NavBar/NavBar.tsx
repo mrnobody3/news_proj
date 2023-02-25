@@ -7,9 +7,12 @@ import IconButton from "@mui/material/IconButton"
 
 import MenuIcon from "@mui/icons-material/Menu"
 import Toolbar from "@mui/material/Toolbar"
+import { useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
+import { selectLoading } from "../../redux/auth/authSelectors"
 import UserMenu from "../Header/UserMenu"
 import LanguageSelector from "../LanguageSelector"
+import LinearLoader from "../LinearLoader"
 import Logo from "../Logo"
 
 interface Item {
@@ -22,6 +25,7 @@ interface INavBar {
   navItems: Item[]
 }
 const NavBar: React.FC<INavBar> = ({ handleDrawerToggle, navItems }) => {
+  const isLoading = useSelector(selectLoading)
   return (
     <AppBar component='nav'>
       <Toolbar sx={{ bgcolor: "#272343" }}>
@@ -59,6 +63,7 @@ const NavBar: React.FC<INavBar> = ({ handleDrawerToggle, navItems }) => {
           <UserMenu />
         </Container>
       </Toolbar>
+      {isLoading && <LinearLoader />}
     </AppBar>
   )
 }
