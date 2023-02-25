@@ -1,12 +1,11 @@
 import React from 'react'
-import { TextField, Button } from '@mui/material'
+import { TextField, Button, Box } from '@mui/material'
 import { useFormik } from 'formik'
 import { useSelector } from 'react-redux'
 import * as yup from 'yup'
 import { useAppDispatch } from '../../../hooks/useReduxWithType'
 import { register } from '../../../redux/auth/authOperations'
 import { selectLoading } from '../../../redux/auth/authSelectors'
-import { StyledForm } from './RegisterForm.styled'
 
 const validationSchema = yup.object({
   name: yup.string().required('Name is required'),
@@ -14,7 +13,7 @@ const validationSchema = yup.object({
   password: yup
     .string()
     .required('Password is required')
-    .min(8, 'Password must be at least 8 characters'),
+    .min(5, 'Password must be at least 5 characters'),
   // confirmPassword: yup
   //   .string()
   //   .oneOf([yup.ref('password')], 'Passwords must match')
@@ -48,7 +47,18 @@ const RegisterForm: React.FC = () => {
   })
 
   return (
-    <StyledForm onSubmit={formik.handleSubmit}>
+    <Box
+      component='form'
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '20px',
+        width: { xs: '100%', sm: '608px' },
+        margin: '0 auto',
+        padding: '20px',
+      }}
+      onSubmit={formik.handleSubmit}
+    >
       <TextField
         id='name'
         label='Name'
@@ -99,7 +109,7 @@ const RegisterForm: React.FC = () => {
       <Button type='submit' variant='contained' disabled={isLoading}>
         Register
       </Button>
-    </StyledForm>
+    </Box>
   )
 }
 

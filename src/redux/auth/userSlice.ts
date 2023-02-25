@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { isError } from '../../helpers/getError'
 import { IUser } from '../../types/user'
-import { login, register } from './authOperations'
+import { current, login, logout, register } from './authOperations'
 interface UsersState {
   user: IUser
-  token?: string | null
+  accessToken?: string | null
   isLoggedIn: boolean
   loading: boolean
   error?: string | null
@@ -17,7 +17,7 @@ const initialState = {
     _id: '',
     avatarUrl: '',
   },
-  token: null,
+  accessToken: null,
   isLoggedIn: false,
   loading: false,
   error: null,
@@ -44,15 +44,44 @@ const authSlice = createSlice({
       state.error = null
     })
     builder.addCase(login.fulfilled, (state, { payload }) => {
-      console.log(payload)
       state.user._id = payload._id
       state.user.name = payload.name
       state.user.email = payload.email
       state.user.avatarUrl = payload.avatarUrl
-      state.token = payload.token
+      state.accessToken = payload.accessToken
       state.isLoggedIn = true
       state.loading = false
       state.error = null
+    })
+
+    // Logout ---->
+    builder.addCase(logout.pending, (state) => {
+      state.loading = true
+      state.error = null
+    })
+    builder.addCase(logout.fulfilled, (state) => {
+      state.loading = false
+      state.accessToken = ''
+      state.user._id = ''
+      state.user.email = ''
+      state.user.name = ''
+      state.user.avatarUrl = ''
+      state.isLoggedIn = false
+    })
+
+    // ----> Get current
+
+    builder.addCase(current.pending, (state) => {
+      state.loading = true
+      state.error = null
+    })
+    builder.addCase(current.fulfilled, (state, { payload }) => {
+      state.loading = false
+      state.user.name = payload.name
+      state.user.email = payload.email
+      state.user._id = payload._id
+      state.user.avatarUrl = payload.avatarUrl
+      state.isLoggedIn = true
     })
 
     // Catch errors ---->

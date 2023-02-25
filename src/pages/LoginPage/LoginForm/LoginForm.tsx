@@ -40,7 +40,7 @@ const LoginForm: React.FC = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: '20px',
-        width: '608px',
+        width: { xs: '100%', sm: '608px' },
         margin: '0 auto',
         padding: '20px',
       }}

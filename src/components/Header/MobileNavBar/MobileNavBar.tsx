@@ -5,6 +5,7 @@ import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import LanguageSelector from '../../LanguageSelector/'
 import Logo from '../../Logo'
 
 interface Item {
@@ -24,8 +25,12 @@ const MobileNavBar: React.FC<IMobileNavBar> = ({
   mobileOpen,
 }) => {
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+    <Box
+      onClick={handleDrawerToggle}
+      sx={{ textAlign: 'center', bgcolor: 'gray' }}
+    >
       <Logo />
+      <LanguageSelector />
       <Divider />
       <List
         sx={{

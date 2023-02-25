@@ -1,22 +1,31 @@
 import { Avatar, Box, Button } from '@mui/material'
 import LogoutIcon from '@mui/icons-material/Logout'
-import React, { useState } from 'react'
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { useAppDispatch } from '../../../hooks/useReduxWithType'
+import { logout } from '../../../redux/auth/authOperations'
+import {
+  selectIsLoggedIn,
+  selectUserData,
+} from '../../../redux/auth/authSelectors'
 
 const UserMenu = () => {
-  // Temp
-  const [user] = useState(false)
+  const isLoggedIn = useSelector(selectIsLoggedIn)
+  const user = useSelector(selectUserData)
+  const dispatch = useAppDispatch()
+  const { t } = useTranslation()
 
   return (
     <Box
       sx={{
         display: 'flex',
         gap: '10px',
-        marginLeft: 'auto',
         alignItems: 'center',
       }}
     >
-      {user ? (
+      {isLoggedIn ? (
         <>
           <Link
             to='/profile'
@@ -29,11 +38,12 @@ const UserMenu = () => {
             <Avatar
               sx={{ marginRight: '10px' }}
               alt={'name'}
-              src='https://picsum.photos/200'
+              src={user.avatarUrl}
             />
-            User
+            {user.name}
           </Link>
           <Button
+            onClick={() => dispatch(logout())}
             endIcon={
               <LogoutIcon
                 color='primary'
@@ -48,10 +58,10 @@ const UserMenu = () => {
       ) : (
         <>
           <Button variant='contained' color='primary'>
-            <Link to='/login'>Login</Link>
+            <Link to='/login'>{t('btn.login')}</Link>
           </Button>
           <Button variant='contained' color='secondary'>
-            <Link to='/register'>Register</Link>
+            <Link to='/register'>{t('btn.register')}</Link>
           </Button>
         </>
       )}

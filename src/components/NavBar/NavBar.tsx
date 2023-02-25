@@ -9,6 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import Toolbar from '@mui/material/Toolbar'
 import { NavLink } from 'react-router-dom'
 import UserMenu from '../Header/UserMenu'
+import LanguageSelector from '../LanguageSelector'
 import Logo from '../Logo'
 
 interface Item {
@@ -54,6 +55,7 @@ const NavBar: React.FC<INavBar> = ({ handleDrawerToggle, navItems }) => {
               </NavLink>
             ))}
           </Box>
+          <LanguageSelector />
           <UserMenu />
         </Container>
       </Toolbar>
