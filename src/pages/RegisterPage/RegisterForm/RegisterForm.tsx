@@ -1,19 +1,19 @@
-import React from 'react'
-import { TextField, Button, Box } from '@mui/material'
-import { useFormik } from 'formik'
-import { useSelector } from 'react-redux'
-import * as yup from 'yup'
-import { useAppDispatch } from '../../../hooks/useReduxWithType'
-import { register } from '../../../redux/auth/authOperations'
-import { selectLoading } from '../../../redux/auth/authSelectors'
+import React from "react"
+import { TextField, Button, Box } from "@mui/material"
+import { useFormik } from "formik"
+import { useSelector } from "react-redux"
+import * as yup from "yup"
+import { useAppDispatch } from "../../../hooks/useReduxWithType"
+import { register } from "../../../redux/auth/authOperations"
+import { selectLoading } from "../../../redux/auth/authSelectors"
 
 const validationSchema = yup.object({
-  name: yup.string().required('Name is required'),
-  email: yup.string().email('Invalid email').required('Email is required'),
+  name: yup.string().required("Name is required"),
+  email: yup.string().email("Invalid email").required("Email is required"),
   password: yup
     .string()
-    .required('Password is required')
-    .min(5, 'Password must be at least 5 characters'),
+    .required("Password is required")
+    .min(5, "Password must be at least 5 characters"),
   // confirmPassword: yup
   //   .string()
   //   .oneOf([yup.ref('password')], 'Passwords must match')
@@ -28,9 +28,9 @@ interface FormValues {
 }
 
 const initialValues: FormValues = {
-  name: '',
-  email: '',
-  password: '',
+  name: "",
+  email: "",
+  password: "",
   // confirmPassword: '',
 }
 
@@ -50,12 +50,12 @@ const RegisterForm: React.FC = () => {
     <Box
       component='form'
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '20px',
-        width: { xs: '100%', sm: '608px' },
-        margin: '0 auto',
-        padding: '20px',
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+        width: { xs: "100%", sm: "608px" },
+        margin: "0 auto",
+        padding: "20px",
       }}
       onSubmit={formik.handleSubmit}
     >

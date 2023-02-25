@@ -1,3 +1,3 @@
-import NewsList from './NewsList'
+import NewsList from "./NewsList"
 
 export default NewsList

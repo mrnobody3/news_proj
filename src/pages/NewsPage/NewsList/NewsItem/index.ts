@@ -1,3 +1,3 @@
-import NewsItem from './NewsItem'
+import NewsItem from "./NewsItem"
 
 export default NewsItem

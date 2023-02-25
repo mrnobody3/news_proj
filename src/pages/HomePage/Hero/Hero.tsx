@@ -1,5 +1,5 @@
-import React from 'react'
-import { SubTitleStyled, TitleStyled } from './Hero.styled'
+import React from "react"
+import { SubTitleStyled, TitleStyled } from "./Hero.styled"
 
 const Hero: React.FC = () => {
   return (

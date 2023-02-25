@@ -1,6 +1,6 @@
-import { Container, Typography } from '@mui/material'
-import React, { ReactNode } from 'react'
-import { SectionStyled } from './Section.styled'
+import { Container, Typography } from "@mui/material"
+import React, { ReactNode } from "react"
+import { SectionStyled } from "./Section.styled"
 interface ISection {
   children: ReactNode
   title?: string
@@ -12,7 +12,7 @@ const Section: React.FC<ISection> = ({ children, title }) => {
         {title && (
           <Typography
             variant='h2'
-            sx={{ marginBottom: '20px', textAlign: 'center' }}
+            sx={{ marginBottom: "20px", textAlign: "center" }}
           >
             {title}
           </Typography>

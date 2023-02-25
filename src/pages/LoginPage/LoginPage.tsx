@@ -1,6 +1,6 @@
-import React from 'react'
-import Section from '../../components/Section'
-import LoginForm from './LoginForm'
+import React from "react"
+import Section from "../../components/Section"
+import LoginForm from "./LoginForm"
 
 const LoginPage = () => {
   return (

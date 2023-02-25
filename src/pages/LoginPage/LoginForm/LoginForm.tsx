@@ -1,15 +1,15 @@
-import React from 'react'
-import { TextField, Button, Box } from '@mui/material'
-import { useFormik } from 'formik'
-import { useSelector } from 'react-redux'
-import * as yup from 'yup'
-import { useAppDispatch } from '../../../hooks/useReduxWithType'
-import { login } from '../../../redux/auth/authOperations'
-import { selectLoading } from '../../../redux/auth/authSelectors'
+import React from "react"
+import { TextField, Button, Box } from "@mui/material"
+import { useFormik } from "formik"
+import { useSelector } from "react-redux"
+import * as yup from "yup"
+import { useAppDispatch } from "../../../hooks/useReduxWithType"
+import { login } from "../../../redux/auth/authOperations"
+import { selectLoading } from "../../../redux/auth/authSelectors"
 
 const validationSchema = yup.object({
-  email: yup.string().email('Invalid email').required('Email is required'),
-  password: yup.string().required('Password is required'),
+  email: yup.string().email("Invalid email").required("Email is required"),
+  password: yup.string().required("Password is required"),
 })
 
 interface FormValues {
@@ -18,8 +18,8 @@ interface FormValues {
 }
 
 const initialValues: FormValues = {
-  email: '',
-  password: '',
+  email: "",
+  password: "",
 }
 
 const LoginForm: React.FC = () => {
@@ -37,12 +37,12 @@ const LoginForm: React.FC = () => {
     <Box
       component='form'
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '20px',
-        width: { xs: '100%', sm: '608px' },
-        margin: '0 auto',
-        padding: '20px',
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+        width: { xs: "100%", sm: "608px" },
+        margin: "0 auto",
+        padding: "20px",
       }}
       onSubmit={formik.handleSubmit}
     >
