@@ -1,0 +1,20 @@
+{
+  "btn": {
+    "login": "Sign In",
+    "register": "Sign Up",
+    "logout": "Logout"
+  },
+  "header": {
+    "nav": {
+      "home": "Home",
+      "news": "News"
+    }
+  },
+  "hero": {
+    "title": "Breaking News",
+    "pretitle": "Stay up-to-date with the latest news and headlines from around the world."
+  },
+  "newspage": {
+    "title": "Watch your fresh news"
+  }
+}

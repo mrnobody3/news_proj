@@ -2,7 +2,7 @@ export interface IUser {
   email: string
   name: string
   _id?: string
-  token?: string | null
+  accessToken?: string | null
   avatarUrl?: string
 }
 export interface IRegisterUser {

@@ -1,6 +1,6 @@
 import { Button } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import NewsList from '../../components/NewsList'
+import NewsList from './NewsList'
 import Section from '../../components/Section'
 import { getPosts } from '../../services/api/getPosts'
 import { IPost } from '../../types/post'
@@ -34,9 +34,13 @@ const NewsPage = () => {
     setPage(page + 1)
   }
 
+  const onRemove = (delId: number) => {
+    setNewsPosts((prevState) => prevState.filter(({ id }) => id !== delId))
+  }
+
   return (
     <Section title='Watch your fresh news'>
-      <NewsList data={newsPosts} />
+      <NewsList data={newsPosts} onRemove={onRemove} />
       {hasMore && (
         <Button
           variant='contained'

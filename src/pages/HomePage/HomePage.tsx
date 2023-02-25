@@ -1,11 +1,12 @@
 import React from 'react'
-import Section from '../../components/Section'
+import Hero from './Hero'
+import { SectionStyled } from './HomePage.styled'
 
 const HomePage = () => {
   return (
-    <Section>
-      <h1>Welcome to us</h1>
-    </Section>
+    <SectionStyled>
+      <Hero />
+    </SectionStyled>
   )
 }
 
