@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
+import { toast } from "react-toastify"
 import {
   getCurrentUser,
   loginUser,
@@ -16,10 +17,13 @@ export const register = createAsyncThunk<
 >("auth/register", async (user, { rejectWithValue }) => {
   try {
     await registerUser(user)
+    toast.success(`User ${user.name} registered successfully`)
   } catch (error) {
     if (axios.isAxiosError(error) && error.response?.status === 409) {
+      toast.error("Email in use")
       return rejectWithValue("Email in use")
     } else {
+      toast.error("Oops, something went wrong")
       return rejectWithValue("Whoops!!! Something wrong")
     }
   }
@@ -31,11 +35,14 @@ export const login = createAsyncThunk<
 >("auth/login", async (user, { rejectWithValue }) => {
   try {
     const data = await loginUser(user)
+    toast("You have successfully logged into your account")
     return data.user
   } catch (error) {
-    if (axios.isAxiosError(error) && error.response?.status === 409) {
+    if (axios.isAxiosError(error) && error.response?.status === 401) {
+      toast.error("Email or password invalid")
       return rejectWithValue("Email in use")
     } else {
+      toast.error("Oops, something went wrong")
       return rejectWithValue("Whoops!!! Something wrong")
     }
   }
@@ -55,12 +62,17 @@ export const logout = createAsyncThunk<void, void, { rejectValue: string }>(
 export const current = createAsyncThunk<
   IUser,
   undefined,
-  { rejectValue: string; state: RootState }
+  { rejectValue: string | undefined; state: RootState }
 >("auth/current", async (_, { rejectWithValue, getState }) => {
   try {
     const { accessToken } = getState().auth
-    if (!accessToken) return rejectWithValue("Token is not valid")
+    if (!accessToken) {
+      return rejectWithValue("Token is not valid")
+    }
+
     const { user } = await getCurrentUser(accessToken)
+    toast("You have successfully logged into your account")
+
     return user
   } catch (e) {
     return rejectWithValue("Whoops!!! Something wrong...")

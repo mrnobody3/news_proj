@@ -1,13 +1,14 @@
 import { Button } from "@mui/material"
 import React, { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
+import Section from "../../components/Section"
 import { useAppDispatch } from "../../hooks/useReduxWithType"
 import { selectLoading } from "../../redux/auth/authSelectors"
 import { setLoader } from "../../redux/auth/userSlice"
-import NewsList from "./NewsList"
-import Section from "../../components/Section"
 import { getPosts } from "../../services/api/getPosts"
 import { IPost } from "../../types/post"
+import NewsList from "./NewsList"
 
 const NewsPage = () => {
   const [newsPosts, setNewsPosts] = useState<IPost[]>([])
@@ -15,6 +16,7 @@ const NewsPage = () => {
   const [page, setPage] = useState(1)
   const dispatch = useAppDispatch()
   const isLoading = useSelector(selectLoading)
+  const { t } = useTranslation()
 
   useEffect(() => {
     fetchNewsPosts()
@@ -44,7 +46,7 @@ const NewsPage = () => {
   }
 
   return (
-    <Section title='Watch your fresh news'>
+    <Section title={`${t("newspage.title")}`}>
       <NewsList data={newsPosts} onRemove={onRemove} />
       {hasMore && (
         <Button
@@ -58,7 +60,7 @@ const NewsPage = () => {
             marginTop: "20px",
           }}
         >
-          {isLoading ? "Loading..." : "Load More"}
+          {isLoading ? "Loading..." : `${t("btn.more")}`}
         </Button>
       )}
     </Section>

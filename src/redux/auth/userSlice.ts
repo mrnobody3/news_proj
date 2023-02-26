@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { isError } from "../../helpers/getError"
 import { IUser } from "../../types/user"
 import { current, login, logout, register } from "./authOperations"
+
 interface UsersState {
   user: IUser
   accessToken?: string | null

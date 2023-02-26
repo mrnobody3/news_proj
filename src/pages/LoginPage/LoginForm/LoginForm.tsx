@@ -1,16 +1,14 @@
-import React from "react"
-import { TextField, Button, Box } from "@mui/material"
+import { Box, Button, TextField, Typography } from "@mui/material"
 import { useFormik } from "formik"
+import React from "react"
+import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import * as yup from "yup"
+import { Link } from "react-router-dom"
+
 import { useAppDispatch } from "../../../hooks/useReduxWithType"
 import { login } from "../../../redux/auth/authOperations"
 import { selectLoading } from "../../../redux/auth/authSelectors"
-
-const validationSchema = yup.object({
-  email: yup.string().email("Invalid email").required("Email is required"),
-  password: yup.string().required("Password is required"),
-})
+import { validationSchema } from "./loginSchema"
 
 interface FormValues {
   email: string
@@ -25,9 +23,11 @@ const initialValues: FormValues = {
 const LoginForm: React.FC = () => {
   const dispatch = useAppDispatch()
   const isLoading = useSelector(selectLoading)
+  const { t } = useTranslation()
+
   const formik = useFormik({
     initialValues,
-    validationSchema,
+    validationSchema: validationSchema(t),
     onSubmit: async (values) => {
       dispatch(login(values))
     },
@@ -67,9 +67,16 @@ const LoginForm: React.FC = () => {
         error={formik.touched.password && Boolean(formik.errors.password)}
         helperText={formik.touched.password && formik.errors.password}
       />
+
       <Button type='submit' variant='contained' disabled={isLoading}>
-        Login
+        {t("btn.login")}
       </Button>
+      <Typography align='center' variant='h5' mt={2}>
+        {t("loginpage.desk")}{" "}
+        <Link style={{ color: "#272343", fontWeight: 700 }} to={"/register"}>
+          {t("btn.register")}
+        </Link>
+      </Typography>
     </Box>
   )
 }

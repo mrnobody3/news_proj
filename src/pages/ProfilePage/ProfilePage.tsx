@@ -1,10 +1,11 @@
 import { Box } from "@mui/material"
-import React from "react"
 import Avatar from "@mui/material/Avatar"
 import Button from "@mui/material/Button"
 import Grid from "@mui/material/Grid"
 import Paper from "@mui/material/Paper"
 import Typography from "@mui/material/Typography"
+import React from "react"
+import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import Section from "../../components/Section"
 import { useAppDispatch } from "../../hooks/useReduxWithType"
@@ -14,6 +15,7 @@ import { selectUserData } from "../../redux/auth/authSelectors"
 const ProfilePage = () => {
   const user = useSelector(selectUserData)
   const dispatch = useAppDispatch()
+  const { t } = useTranslation()
 
   return (
     <Section>
@@ -54,7 +56,7 @@ const ProfilePage = () => {
               color='secondary'
               onClick={() => dispatch(logout())}
             >
-              Logout
+              {t("btn.logout")}
             </Button>
           </Paper>
         </Grid>
