@@ -2,7 +2,8 @@
   "btn": {
     "login": "Sign In",
     "register": "Sign Up",
-    "logout": "Logout"
+    "logout": "Logout",
+    "more" : "Load More"
   },
   "header": {
     "nav": {
@@ -16,5 +17,33 @@
   },
   "newspage": {
     "title": "Watch your fresh news"
+  },
+  "registerpage": {
+    "yup": {
+      "name": {
+        "required": "Name is required"
+      },
+      "email": {
+        "invalid": "Invalid email",
+        "required": "Email is required"
+      },
+      "password": {
+        "required": "Password is required"
+      }
+    },
+    "desk": "Don’t you have an account?"
+  },
+  "loginpage": {
+    "yup": {
+      "email": {
+        "invalid": "Invalid email",
+        "required": "Email is required"
+      },
+      "password": {
+        "required": "Password is required"
+      }
+    },
+    "desk": "Don’t you have an account?"
+
   }
 }

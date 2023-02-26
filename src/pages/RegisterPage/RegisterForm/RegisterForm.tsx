@@ -1,24 +1,17 @@
-import React from "react"
-import { TextField, Button, Box } from "@mui/material"
+import { Box, Button, TextField, Typography } from "@mui/material"
 import { useFormik } from "formik"
+import React from "react"
+import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import * as yup from "yup"
+import { Link } from "react-router-dom"
+
 import { useAppDispatch } from "../../../hooks/useReduxWithType"
 import { register } from "../../../redux/auth/authOperations"
-import { selectLoading } from "../../../redux/auth/authSelectors"
-
-const validationSchema = yup.object({
-  name: yup.string().required("Name is required"),
-  email: yup.string().email("Invalid email").required("Email is required"),
-  password: yup
-    .string()
-    .required("Password is required")
-    .min(5, "Password must be at least 5 characters"),
-  // confirmPassword: yup
-  //   .string()
-  //   .oneOf([yup.ref('password')], 'Passwords must match')
-  //   .required('Confirm Password is required'),
-})
+import {
+  selectErrorAuth,
+  selectLoading,
+} from "../../../redux/auth/authSelectors"
+import { validationSchema } from "./registerSchema"
 
 interface FormValues {
   name: string
@@ -37,12 +30,15 @@ const initialValues: FormValues = {
 const RegisterForm: React.FC = () => {
   const dispatch = useAppDispatch()
   const isLoading = useSelector(selectLoading)
+  const error = useSelector(selectErrorAuth)
+  const { t } = useTranslation()
+
   const formik = useFormik({
     initialValues,
-    validationSchema,
+    validationSchema: validationSchema(t),
     onSubmit: async (values) => {
       dispatch(register(values))
-      formik.resetForm()
+      !error && (await formik.resetForm())
     },
   })
 
@@ -106,9 +102,16 @@ const RegisterForm: React.FC = () => {
       {/*    formik.touched.confirmPassword && formik.errors.confirmPassword */}
       {/*  } */}
       {/* /> */}
+
       <Button type='submit' variant='contained' disabled={isLoading}>
         Register
       </Button>
+      <Typography align='center' variant='h5' mt={2}>
+        Do you have an account?{" "}
+        <Link style={{ color: "#272343", fontWeight: 700 }} to={"/login"}>
+          Sign in
+        </Link>
+      </Typography>
     </Box>
   )
 }

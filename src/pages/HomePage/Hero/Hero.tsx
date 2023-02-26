@@ -1,14 +1,13 @@
 import React from "react"
+import { useTranslation } from "react-i18next"
 import { SubTitleStyled, TitleStyled } from "./Hero.styled"
 
 const Hero: React.FC = () => {
+  const { t } = useTranslation()
   return (
     <div>
-      <TitleStyled>Breaking News</TitleStyled>
-      <SubTitleStyled>
-        Stay up-to-date with the latest news and headlines from around the
-        world.
-      </SubTitleStyled>
+      <TitleStyled>{t("hero.title")}</TitleStyled>
+      <SubTitleStyled>{t("hero.pretitle")}</SubTitleStyled>
     </div>
   )
 }

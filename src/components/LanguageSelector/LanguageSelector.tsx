@@ -1,6 +1,6 @@
 import React from "react"
 import { useTranslation } from "react-i18next"
-import { FormControl, Select, MenuItem, SelectChangeEvent } from "@mui/material"
+import { FormControl, MenuItem, Select, SelectChangeEvent } from "@mui/material"
 
 const LanguageSelector: React.FC = () => {
   const { i18n } = useTranslation()
