@@ -1,12 +1,11 @@
+import MenuIcon from "@mui/icons-material/Menu"
 import { Container } from "@mui/material"
-import * as React from "react"
 import AppBar from "@mui/material/AppBar"
 import Box from "@mui/material/Box"
 
 import IconButton from "@mui/material/IconButton"
-
-import MenuIcon from "@mui/icons-material/Menu"
 import Toolbar from "@mui/material/Toolbar"
+import * as React from "react"
 import { useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
 import { selectLoading } from "../../redux/auth/authSelectors"
@@ -39,13 +38,14 @@ const NavBar: React.FC<INavBar> = ({ handleDrawerToggle, navItems }) => {
           >
             <MenuIcon />
           </IconButton>
-          <Logo style={{ marginRight: "40px" }} />
           <Box
             sx={{
               display: { xs: "none", sm: "flex" },
               gap: { sm: "40px" },
+              alignItems: "center",
             }}
           >
+            <Logo style={{ marginRight: "40px" }} />
             {navItems.map((item) => (
               <NavLink
                 to={item.path}
