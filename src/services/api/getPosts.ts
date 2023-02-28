@@ -1,6 +1,7 @@
 import axios from "axios"
 
-const { REACT_APP_NEWS_API } = process.env
+const { REACT_APP_NEWS_API = "https://jsonplaceholder.typicode.com" } =
+  process.env
 
 const instance = axios.create({
   baseURL: REACT_APP_NEWS_API,
