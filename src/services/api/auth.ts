@@ -1,7 +1,10 @@
 import axios from "axios"
 import { ILoginUser, IRegisterUser } from "../../types/user"
+
+const { REACT_APP_AUTH_API } = process.env
+console.log(REACT_APP_AUTH_API, process.env)
 const instance = axios.create({
-  baseURL: "https://pet-api-ly5w.onrender.com/api/auth",
+  baseURL: REACT_APP_AUTH_API,
 })
 
 const addToken = (token: string) => {
