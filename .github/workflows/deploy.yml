@@ -21,3 +21,7 @@ jobs:
         with:
           branch: gh-pages
           folder: build
+      - name: Display default env
+        run: |
+          echo "Github News: $REACT_APP_NEWS_API"
+          echo "Github Auth: $REACT_APP_AUTH_API"
