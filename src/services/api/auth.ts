@@ -1,8 +1,9 @@
 import axios from "axios"
 import { ILoginUser, IRegisterUser } from "../../types/user"
 
-const { REACT_APP_AUTH_API = "https://pet-api-ly5w.onrender.com/api/auth" } =
+const { REACT_APP_AUTH_API = "https://pet-api-ly5w.onrender.com/api" } =
   process.env
+
 const instance = axios.create({
   baseURL: REACT_APP_AUTH_API,
 })
@@ -16,11 +17,11 @@ const removeToken = () => {
 }
 
 export const registerUser = async (user: IRegisterUser) => {
-  return await instance.post("/register", user)
+  return await instance.post("/auth/register", user)
 }
 
 export const loginUser = async (user: ILoginUser) => {
-  const { data } = await instance.post("/login", user)
+  const { data } = await instance.post("/auth/login", user)
   addToken(data.user.accessToken)
   return data
 }
@@ -28,7 +29,7 @@ export const loginUser = async (user: ILoginUser) => {
 export const getCurrentUser = async (accessToken: string) => {
   addToken(accessToken)
   try {
-    const { data } = await instance.get("/current")
+    const { data } = await instance.get("/auth/current")
     return data
   } catch (error) {
     removeToken()
@@ -37,7 +38,8 @@ export const getCurrentUser = async (accessToken: string) => {
 }
 
 export const logoutUser = async () => {
-  const result = await instance.get("/logout")
+  const result = await instance.get("/auth/logout")
   removeToken()
   return result
 }
+export default instance

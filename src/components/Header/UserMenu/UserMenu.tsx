@@ -1,5 +1,5 @@
-import { Avatar, Box, Button } from "@mui/material"
 import LogoutIcon from "@mui/icons-material/Logout"
+import { Avatar, Box, Button } from "@mui/material"
 import React from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -16,7 +16,6 @@ const UserMenu = () => {
   const user = useSelector(selectUserData)
   const dispatch = useAppDispatch()
   const { t } = useTranslation()
-
   return (
     <Box
       sx={{
