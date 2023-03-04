@@ -1,5 +1,5 @@
-import { Card, CardContent, IconButton, Typography } from "@mui/material"
 import ClearIcon from "@mui/icons-material/Clear"
+import { Card, CardContent, IconButton, Typography } from "@mui/material"
 import React from "react"
 
 interface INewsItem {
@@ -56,4 +56,4 @@ const NewsItem: React.FC<INewsItem> = ({
   )
 }
 
-export default NewsItem
+export default React.memo(NewsItem)

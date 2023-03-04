@@ -75,7 +75,6 @@ const authSlice = createSlice({
     })
 
     // ----> Get current
-
     builder.addCase(current.pending, (state) => {
       state.loading = true
       state.error = null
@@ -96,7 +95,6 @@ const authSlice = createSlice({
     })
   },
 })
-
 export const { setLoader } = authSlice.actions
 
 export const authReducer = authSlice.reducer
