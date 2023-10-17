@@ -1,8 +1,7 @@
 import axios from "axios"
 import { ILoginUser, IRegisterUser } from "../../types/user"
 
-const { REACT_APP_AUTH_API = "https://pet-api-ly5w.onrender.com/api" } =
-  process.env
+const { REACT_APP_AUTH_API } = process.env
 
 const instance = axios.create({
   baseURL: REACT_APP_AUTH_API,
@@ -22,7 +21,7 @@ export const registerUser = async (user: IRegisterUser) => {
 
 export const loginUser = async (user: ILoginUser) => {
   const { data } = await instance.post("/auth/login", user)
-  addToken(data.user.accessToken)
+  addToken(data.accessToken)
   return data
 }
 

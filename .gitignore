@@ -122,6 +122,10 @@ dist
 .env.test.local
 .env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+/.idea/codeStyles/codeStyleConfig.xml
+/.idea/modules.xml
+/.idea/news_proj.iml
+/.idea/prettier.xml
+/.idea/codeStyles/Project.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/vcs.xml

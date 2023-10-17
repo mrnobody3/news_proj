@@ -36,7 +36,7 @@ export const login = createAsyncThunk<
   try {
     const data = await loginUser(user)
     toast("You have successfully logged into your account")
-    return data.user
+    return data
   } catch (error) {
     if (axios.isAxiosError(error) && error.response?.status === 401) {
       toast.error("Email or password invalid")
