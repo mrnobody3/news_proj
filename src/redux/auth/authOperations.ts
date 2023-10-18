@@ -70,7 +70,7 @@ export const current = createAsyncThunk<
       return rejectWithValue("Token is not valid")
     }
 
-    const { user } = await getCurrentUser(accessToken)
+    const user = await getCurrentUser(accessToken)
     toast("You have successfully logged into your account")
 
     return user
