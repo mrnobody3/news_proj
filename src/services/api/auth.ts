@@ -1,10 +1,8 @@
 import axios from "axios"
 import { ILoginUser, IRegisterUser } from "../../types/user"
 
-const { REACT_APP_AUTH_API } = process.env
-
 const instance = axios.create({
-  baseURL: REACT_APP_AUTH_API,
+  baseURL: "https://api-express-017d.onrender.com/api",
 })
 
 const addToken = (token: string) => {
